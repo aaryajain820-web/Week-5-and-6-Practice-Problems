@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+class DigitFrequency {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int number = sc.nextInt();
+        int temp = number;
+        int count = 0;
+        while (temp != 0) {
+            count++;
+            temp /= 10;
+        }
+
+        if (number == 0) {
+            count = 1;
+        }
+
+        int[] digits = new int[count];
+        int index = 0;
+        temp = number;
+        while (temp != 0) {
+            digits[index] = temp % 10;
+            temp /= 10;
+            index++;
+        }
+
+        if (number == 0) {
+            digits[0] = 0;
+        }
+
+        int[] freq = new int[10];
+        for (int i = 0; i < digits.length; i++) {
+            freq[digits[i]]++;
+        }
+
+        System.out.println("Digit frequencies:");
+        for (int i = 0; i < 10; i++) {
+            if (freq[i] > 0) {
+                System.out.println("Digit " + i + " occurs " + freq[i] + " times");
+            }
+        }
+    }
+}
